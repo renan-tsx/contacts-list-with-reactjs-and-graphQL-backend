@@ -1,0 +1,16 @@
+{
+  "engines": {
+    "node": "18.16.0"
+  },
+  "name": "Contacts list with reactjs and graphQL",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:renan-tsx/contacts-list-with-reactjs-and-graphQL.git",
+  "author": "Renan Moreira <renan.tsx@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^3.12.0",
+    "graphql": "^16.6.0",
+    "install": "^0.13.0"
+  }
+}
