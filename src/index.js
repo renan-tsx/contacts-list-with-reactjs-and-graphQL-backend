@@ -3,22 +3,38 @@ import { ApolloServer, gql } from 'apollo-server';
 const server = new ApolloServer({
   typeDefs: gql`
     type Query {
+      user: User!
+      users: [User!]!
+    }
+    type User {
       id: ID!
-      name: String!
-      age: Int!
-      average: Float!
-      married: Boolean!
-      children: [String!]!
+      userName: String!
     }
   `,
   resolvers: {
     Query: {
-      id: () => 'Hs18E-1sd0',
-      name: () => 'Pedro',
-      age: () => 28,
-      average: () => 80.1,
-      married: () => true,
-      children: () => ['Ana', 'João'],
+      user: () => {
+        return {
+          id: 'H1d55-asll',
+          userName: 'Pedro',
+        };
+      },
+      users: () => {
+        return [
+          {
+            id: 'H1d55-asll',
+            userName: 'Pedro',
+          },
+          {
+            id: '9Jks2-1597',
+            userName: 'Maria',
+          },
+          {
+            id: 'aklP-5l0i',
+            userName: 'José',
+          },
+        ];
+      },
     },
   },
 });
