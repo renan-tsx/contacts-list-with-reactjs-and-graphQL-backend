@@ -2,12 +2,15 @@
   "engines": {
     "node": "18.16.0"
   },
-  "name": "Contacts list with reactjs and graphQL",
+  "name": "contacts-list-react-graphql-backend",
   "version": "1.0.0",
   "main": "src/index.js",
   "repository": "git@github.com:renan-tsx/contacts-list-with-reactjs-and-graphQL.git",
   "author": "Renan Moreira <renan.tsx@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "node -r sucrase/register src/index.js"
+  },
   "dependencies": {
     "apollo-server": "^3.12.0",
     "graphql": "^16.6.0",
@@ -17,6 +20,7 @@
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "sucrase": "^3.32.0"
   }
 }
