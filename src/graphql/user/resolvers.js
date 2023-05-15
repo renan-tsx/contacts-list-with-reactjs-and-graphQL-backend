@@ -1,10 +1,10 @@
-const user = async (_obj, arg, context, _info) => {
-  const user = await context.axios.get(`http://localhost:3000/users/${arg.id}`);
+const user = async (_obj, { id }, { getUsers }, _info) => {
+  const user = await getUsers(id);
   return user.data;
 };
 
-const users = async (_obj, _arg, context, _info) => {
-  const users = await context.axios.get('http://localhost:3000/users');
+const users = async (_obj, _arg, { getUsers }, _info) => {
+  const users = await getUsers();
   return users.data;
 };
 
