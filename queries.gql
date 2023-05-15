@@ -1,0 +1,41 @@
+query GET_USER($id: ID!) {
+  user(id: $id) {
+    id
+    firtName
+  }
+}
+
+query GET_USERS {
+  users {
+    id
+    indexRef
+    firtName
+    lastName
+    createdAt
+    updatedAt
+  }
+}
+
+query GET_PHONE($id: ID!) {
+  phone(id: $id) {
+    id
+    indexRef
+    userId
+    title
+    value
+    createdAt
+    updatedAt
+  }
+}
+
+query GET_PHONES {
+  phones {
+    id
+    indexRef
+    userId
+    title
+    value
+    createdAt
+    updatedAt
+  }
+}
