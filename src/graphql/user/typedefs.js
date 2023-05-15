@@ -8,6 +8,12 @@ export const userTypesDefs = gql`
 
   type User {
     id: ID!
+    indexRef: Int!
     userName: String!
+    firtName: String!
+    lastName: String!
+    createdAt: String!
+    updatedAt: String!
+    # phones: [Phone!]!
   }
 `;
