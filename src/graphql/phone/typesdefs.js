@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 export const phoneTypeDefs = gql`
   extend type Query {
-    phone: Phone!
+    phone(id: ID!): Phone!
     phones: [Phone!]!
   }
 
