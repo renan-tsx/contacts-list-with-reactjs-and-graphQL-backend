@@ -49,7 +49,7 @@ query GET_USER($id: ID!, $id2: ID!) {
     id
     firtName
   }
-  user(id: $id) {
+  user(id: $id2) {
     id
     firtName
   }
@@ -66,5 +66,22 @@ query GET_USER($id: ID!, $id2: ID!) {
     firtName
     aliasesId: id
     aliasesName: firtName
+  }
+}
+
+# Query fragments
+
+fragment user on User {
+  id
+  indexRef
+  firtName
+  lastName
+  createdAt
+  updatedAt
+}
+
+query GET_USER($id: ID!) {
+  user(id: $id) {
+    ...user
   }
 }
