@@ -39,3 +39,32 @@ query GET_PHONES {
     updatedAt
   }
 }
+
+# Aliases in queries
+
+## Not using
+## Not repeat property
+query GET_USER($id: ID!, $id2: ID!) {
+  user(id: $id) {
+    id
+    firtName
+  }
+  user(id: $id) {
+    id
+    firtName
+  }
+}
+
+## Correct use
+query GET_USER($id: ID!, $id2: ID!) {
+  user(id: $id) {
+    id
+    firtName
+  }
+  aliasesUser: user(id: $id2) {
+    id
+    firtName
+    aliasesId: id
+    aliasesName: firtName
+  }
+}
