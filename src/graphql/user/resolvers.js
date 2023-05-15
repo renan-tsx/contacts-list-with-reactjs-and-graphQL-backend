@@ -1,12 +1,6 @@
-const user = () => {
-  return {
-    id: '101',
-    indexRef: 1,
-    firtName: 'Pedro',
-    lastName: 'de Souza',
-    createdAt: '2023-05-12T18:44:30.446Z',
-    updatedAt: '2023-05-12T18:44:30.446Z',
-  };
+const user = async (_obj, arg, context, _info) => {
+  const user = await context.axios.get(`http://localhost:3000/users/${arg.id}`);
+  return user.data;
 };
 
 const users = async (_obj, _arg, context, _info) => {
