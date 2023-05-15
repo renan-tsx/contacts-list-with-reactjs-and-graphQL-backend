@@ -13,4 +13,9 @@ export const userResolvers = {
     user,
     users,
   },
+  User: {
+    unixTimestamp: (obj, _arg, _context, _info) => {
+      return new Date(obj.createdAt).getTime();
+    },
+  },
 };

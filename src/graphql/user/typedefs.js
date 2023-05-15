@@ -15,5 +15,6 @@ export const userTypesDefs = gql`
     createdAt: String!
     updatedAt: String!
     # phones: [Phone!]!
+    unixTimestamp: String!
   }
 `;
