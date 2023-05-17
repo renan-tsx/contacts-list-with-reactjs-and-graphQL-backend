@@ -1,14 +1,18 @@
 const user = async (_obj, { id }, { getUsers }, _info) => {
-  const user = await getUsers('/' + id);
+  const path = '/' + id;
 
-  if (typeof user.data.id === 'undefined') {
+  const user = await getUsers(path)
+    .then((res) => res.data)
+    .catch(() => new Object());
+
+  if (user.id === undefined) {
     return {
       statusCode: 404,
       message: 'User not found!',
     };
   }
 
-  return user.data;
+  return user;
 };
 
 const users = async (_obj, { input }, { getUsers }, _info) => {

@@ -133,13 +133,24 @@ query User {
   }
 }
 
-# result
+# result ok
 {
   "data": {
     "user": {
       "__typename": "User",
       "id": "102",
       "firtName": "João"
+    }
+  }
+}
+
+# result error
+{
+  "data": {
+    "user": {
+      "__typename": "UserNotFoundError",
+      "statusCode": 404,
+      "message": "User not found!"
     }
   }
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const context = () => {
   const api = process.env.API;
+
   return {
     axios,
     getUsers: (path = '') => axios.get(`${api}/users${path}`),

@@ -17,7 +17,7 @@ export const userTypesDefs = gql`
     id: ID!
     indexRef: Int!
     userName: String!
-    firtName: String!
+    firstName: String!
     lastName: String!
     createdAt: String!
     updatedAt: String!
