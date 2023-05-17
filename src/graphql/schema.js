@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server';
+import { apiFiltersResolvers } from './api-filters/resolvers';
 import { apiFiltersTypesDefs } from './api-filters/typedefs';
 import { contactTypeResolvers } from './contactType/resolvers';
 import { contactTypeTypeDefs } from './contactType/typesdefs';
@@ -31,4 +32,5 @@ export const resolvers = [
   userResolvers,
   phoneResolvers,
   contactTypeResolvers,
+  apiFiltersResolvers,
 ];
