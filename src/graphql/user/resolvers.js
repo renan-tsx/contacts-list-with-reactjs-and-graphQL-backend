@@ -5,10 +5,19 @@ const user = async (_obj, { id }, { getUsers }, _info) => {
     .then((res) => res.data)
     .catch(() => new Object());
 
+  if (Math.random() > 0.5) {
+    return {
+      statusCode: 500,
+      message: 'User timeout!',
+      timeout: 123,
+    };
+  }
+
   if (user.id === undefined) {
     return {
       statusCode: 404,
       message: 'User not found!',
+      userId: id,
     };
   }
 
@@ -35,8 +44,16 @@ export const userResolvers = {
   },
   UserResult: {
     __resolveType: (obj) => {
-      if (typeof obj.statusCode !== 'undefined') return 'UserNotFoundError';
+      if (typeof obj.userId !== 'undefined') return 'UserNotFoundError';
+      if (typeof obj.timeout !== 'undefined') return 'UserTimeoutError';
       if (typeof obj.id !== 'undefined') return 'User';
+      return null;
+    },
+  },
+  IUserError: {
+    __resolveType: (obj) => {
+      if (typeof obj.userId !== 'undefined') return 'UserNotFoundError';
+      if (typeof obj.timeout !== 'undefined') return 'UserTimeoutError';
       return null;
     },
   },

@@ -154,3 +154,32 @@ query User {
     }
   }
 }
+
+# Queries with interfaces
+  # __typename = Type return = User, UserNotFoundError or UserTimeoutError
+
+  # 1 - Seach user 104, return User or IUserError
+  # 2 - Return UserNotFoundError or UserTimeoutError
+query User {
+  user(id: "104") {
+    __typename
+
+    ... on User {
+      id
+      firstName
+    }
+
+    ... on IUserError {
+        statusCode
+        message
+
+        ... on UserNotFoundError {
+          userId
+        }
+
+        ... on UserTimeoutError {
+          timeout
+        }
+      }
+  }
+}

@@ -6,11 +6,23 @@ export const userTypesDefs = gql`
     users(input: ApiFiltersInputs): [User!]!
   }
 
-  union UserResult = UserNotFoundError | User
+  union UserResult = UserNotFoundError | UserTimeoutError | User
 
-  type UserNotFoundError {
+  interface IUserError {
     statusCode: Int!
     message: String!
+  }
+
+  type UserNotFoundError implements IUserError {
+    statusCode: Int!
+    message: String!
+    userId: String!
+  }
+
+  type UserTimeoutError implements IUserError {
+    statusCode: Int!
+    message: String!
+    timeout: Int!
   }
 
   type User {
