@@ -3,8 +3,11 @@ const user = async (_obj, { id }, { getUsers }, _info) => {
   return user.data;
 };
 
-const users = async (_obj, _arg, { getUsers }, _info) => {
-  const users = await getUsers();
+const users = async (_obj, { input }, { getUsers }, _info) => {
+  const apiFiltersInput = new URLSearchParams(input);
+  const path = '/?' + apiFiltersInput;
+
+  const users = await getUsers(path);
   return users.data;
 };
 

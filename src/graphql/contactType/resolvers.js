@@ -1,29 +1,14 @@
-const contactType = () => {
-  return {
-    id: '301',
-    indexRef: 1,
-    title: 'email',
-  };
+const contactType = async (_obj, { id }, { getcontactType }, _info) => {
+  const contactType = await getcontactType(id);
+  return contactType.data;
 };
 
-const contactTypes = () => {
-  return [
-    {
-      id: '301',
-      indexRef: 1,
-      title: 'email',
-    },
-    {
-      id: '302',
-      indexRef: 2,
-      title: 'celular',
-    },
-    {
-      id: '303',
-      indexRef: 3,
-      title: 'fixo',
-    },
-  ];
+const contactTypes = async (_obj, { input }, { getcontactType }, _info) => {
+  const apiFiltersInput = new URLSearchParams(input);
+  const path = '/?' + apiFiltersInput;
+
+  const contactTypes = await getcontactType(path);
+  return contactTypes.data;
 };
 
 export const contactTypeResolvers = {

@@ -3,8 +3,11 @@ const phone = async (_obj, { id }, { getPhones }, _info) => {
   return phone.data;
 };
 
-const phones = async (_obj, _arg, { getPhones }, _info) => {
-  const phones = await getPhones();
+const phones = async (_obj, { input }, { getPhones }, _info) => {
+  const apiFiltersInput = new URLSearchParams(input);
+  const path = '/?' + apiFiltersInput;
+
+  const phones = await getPhones(path);
   return phones.data;
 };
 

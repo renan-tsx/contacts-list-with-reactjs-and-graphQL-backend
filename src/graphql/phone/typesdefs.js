@@ -3,7 +3,7 @@ import { gql } from 'apollo-server';
 export const phoneTypeDefs = gql`
   extend type Query {
     phone(id: ID!): Phone!
-    phones: [Phone!]!
+    phones(input: ApiFiltersInputs): [Phone!]!
   }
 
   type Phone {
