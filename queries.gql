@@ -114,3 +114,32 @@ query ContactTypes(
   {
     "limit": 1
   }
+
+# Queries for union type
+
+query User {
+  user(id: "102") {
+    __typename
+
+    ... on User {
+      id
+      firtName
+    }
+
+    ... on UserNotFoundError {
+      statusCode
+      message
+    }
+  }
+}
+
+# result
+{
+  "data": {
+    "user": {
+      "__typename": "User",
+      "id": "102",
+      "firtName": "João"
+    }
+  }
+}

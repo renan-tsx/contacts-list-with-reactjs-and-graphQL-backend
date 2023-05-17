@@ -1,5 +1,13 @@
 const user = async (_obj, { id }, { getUsers }, _info) => {
-  const user = await getUsers(id);
+  const user = await getUsers('/' + id);
+
+  if (typeof user.data.id === 'undefined') {
+    return {
+      statusCode: 404,
+      message: 'User not found!',
+    };
+  }
+
   return user.data;
 };
 
@@ -19,6 +27,13 @@ export const userResolvers = {
   User: {
     unixTimestamp: (obj, _arg, _context, _info) => {
       return new Date(obj.createdAt).getTime();
+    },
+  },
+  UserResult: {
+    __resolveType: (obj) => {
+      if (typeof obj.statusCode !== 'undefined') return 'UserNotFoundError';
+      if (typeof obj.id !== 'undefined') return 'User';
+      return null;
     },
   },
 };
