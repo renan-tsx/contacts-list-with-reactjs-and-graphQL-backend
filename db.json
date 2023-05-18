@@ -45,6 +45,16 @@
       "value": "551935361020",
       "createdAt": "2023-05-12T19:07:20.361Z",
       "updatedAt": "2023-05-12T19:07:20.361Z"
+    },
+    {
+      "id": "203",
+      "indexRef": 2,
+      "userId": "102",
+      "contactTypeId": "303",
+      "title": "Trabalho",
+      "value": "551930309090",
+      "createdAt": "2023-05-18T19:10:30.361Z",
+      "updatedAt": "2023-05-182T19:10:30.361Z"
     }
   ],
   "contactType": [

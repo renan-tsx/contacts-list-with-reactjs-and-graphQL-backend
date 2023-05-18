@@ -2,28 +2,28 @@ import { gql } from 'apollo-server';
 
 export const userTypesDefs = gql`
   extend type Query {
-    user(id: ID!): UserResult!
+    user(id: ID!): User!
     users(input: ApiFiltersInputs): [User!]!
   }
 
-  union UserResult = UserNotFoundError | UserTimeoutError | User
+  #union UserResult = UserNotFoundError | UserTimeoutError | User
 
-  interface IUserError {
-    statusCode: Int!
-    message: String!
-  }
+  #interface IUserError {
+  #  statusCode: Int!
+  #  message: String!
+  #}
 
-  type UserNotFoundError implements IUserError {
-    statusCode: Int!
-    message: String!
-    userId: String!
-  }
+  #type UserNotFoundError implements IUserError {
+  #  statusCode: Int!
+  #  message: String!
+  #  userId: String!
+  #}
 
-  type UserTimeoutError implements IUserError {
-    statusCode: Int!
-    message: String!
-    timeout: Int!
-  }
+  #type UserTimeoutError implements IUserError {
+  #  statusCode: Int!
+  #  message: String!
+  #  timeout: Int!
+  #}
 
   type User {
     id: ID!
@@ -33,7 +33,7 @@ export const userTypesDefs = gql`
     lastName: String!
     createdAt: String!
     updatedAt: String!
-    # phones: [Phone!]!
-    unixTimestamp: String!
+
+    phones: [Phone!]!
   }
 `;

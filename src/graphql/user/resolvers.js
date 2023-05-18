@@ -5,21 +5,21 @@ const user = async (_obj, { id }, { getUsers }, _info) => {
     .then((res) => res.data)
     .catch(() => new Object());
 
-  if (Math.random() > 0.5) {
-    return {
-      statusCode: 500,
-      message: 'User timeout!',
-      timeout: 123,
-    };
-  }
+  // if (Math.random() > 0.5) {
+  //   return {
+  //     statusCode: 500,
+  //     message: 'User timeout!',
+  //     timeout: 123,
+  //   };
+  // }
 
-  if (user.id === undefined) {
-    return {
-      statusCode: 404,
-      message: 'User not found!',
-      userId: id,
-    };
-  }
+  // if (user.id === undefined) {
+  //   return {
+  //     statusCode: 404,
+  //     message: 'User not found!',
+  //     userId: id,
+  //   };
+  // }
 
   return user;
 };
@@ -32,29 +32,32 @@ const users = async (_obj, { input }, { getUsers }, _info) => {
   return users.data;
 };
 
+const phones = async ({ id: userId }, _arg, { getUsers }, _info) => {
+  const path = `/${userId}?_embed=phones`;
+  const res = await getUsers(path);
+
+  return res.data.phones;
+};
+
 export const userResolvers = {
   Query: {
     user,
     users,
   },
-  User: {
-    unixTimestamp: (obj, _arg, _context, _info) => {
-      return new Date(obj.createdAt).getTime();
-    },
-  },
-  UserResult: {
-    __resolveType: (obj) => {
-      if (typeof obj.userId !== 'undefined') return 'UserNotFoundError';
-      if (typeof obj.timeout !== 'undefined') return 'UserTimeoutError';
-      if (typeof obj.id !== 'undefined') return 'User';
-      return null;
-    },
-  },
-  IUserError: {
-    __resolveType: (obj) => {
-      if (typeof obj.userId !== 'undefined') return 'UserNotFoundError';
-      if (typeof obj.timeout !== 'undefined') return 'UserTimeoutError';
-      return null;
-    },
-  },
+  User: { phones },
+  // UserResult: {
+  //   __resolveType: (obj) => {
+  //     if (typeof obj.userId !== 'undefined') return 'UserNotFoundError';
+  //     if (typeof obj.timeout !== 'undefined') return 'UserTimeoutError';
+  //     if (typeof obj.id !== 'undefined') return 'User';
+  //     return null;
+  //   },
+  // },
+  // IUserError: {
+  //   __resolveType: (obj) => {
+  //     if (typeof obj.userId !== 'undefined') return 'UserNotFoundError';
+  //     if (typeof obj.timeout !== 'undefined') return 'UserTimeoutError';
+  //     return null;
+  //   },
+  // },
 };
