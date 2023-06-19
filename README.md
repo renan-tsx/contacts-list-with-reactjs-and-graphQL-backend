@@ -1,1 +1,1 @@
-# (backend) Post with GraphQL
+# (backend/API) Contacts list with graphQL
